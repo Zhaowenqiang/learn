@@ -1,9 +1,9 @@
 # netty 问题整理
- # 1、nio,bio,aio区别
+ ### 1、nio,bio,aio区别
   - bio为同步阻塞式io
   - nio为同步非阻塞式io
   - aio为一部非阻塞式io
- # 2、为什么netty没有使用aio,而是使用nio
+ ### 2、为什么netty没有使用aio,而是使用nio
   - aio的内部实现利用了操作系统的回调形势，这种方式目前的性能没有nio的高
  - 3、nio的selector和缓存作用
   - netty的selector是用来检测注册在其上的channel是否准备就绪，实现非阻塞的重要工具
