@@ -1,6 +1,6 @@
 # netty 问题整理
  - 1、nio,bio,aio区别
-  - bio为同步阻塞式io
+  -- bio为同步阻塞式io
   - nio为同步非阻塞式io
   - aio为一部非阻塞式io
  - 2、为什么netty没有使用aio,而是使用nio
