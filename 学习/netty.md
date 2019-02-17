@@ -1,14 +1,14 @@
 # netty 问题整理
-1、nio,bio,aio区别
-2、为什么netty没有使用aio,而是使用nio
-3、nio的selector和缓存作用
-4、Java对堆内存和对外内存的优劣势
-5、Java中buffer数组的数据原理，读模式和写模式
-6、channel在nio中的作用
-7、selector轮询多个channel直接会有影响吗
-8、channel就绪是有写入或者有读入，那么写入或读入一半的时候怎么处理
-9、当channel的数量变大时，selector的轮询效率会变低，这种情况怎么处理
-10、selector的内部多线程轮询的原理是什么
-11、netty中epoll是什么原理
-12、操作的系统ET模式和LT模式什么区别
-13、
+ - 1、nio,bio,aio区别
+ - 2、为什么netty没有使用aio,而是使用nio
+ - 3、nio的selector和缓存作用
+ - 4、Java对堆内存和对外内存的优劣势
+ - 5、Java中buffer数组的数据原理，读模式和写模式
+ - 6、channel在nio中的作用
+ - 7、selector轮询多个channel直接会有影响吗
+ - 8、channel就绪是有写入或者有读入，那么写入或读入一半的时候怎么处理
+ - 9、当channel的数量变大时，selector的轮询效率会变低，这种情况怎么处理
+ - 10、selector的内部多线程轮询的原理是什么
+ - 11、netty中epoll是什么原理
+ - 12、操作的系统ET模式和LT模式什么区别
+ - 13、
