@@ -1,3 +1,4 @@
+# netty 问题整理
 1、nio,bio,aio区别
 2、为什么netty没有使用aio,而是使用nio
 3、nio的selector和缓存作用
