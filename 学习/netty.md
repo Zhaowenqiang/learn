@@ -11,4 +11,15 @@
  - 10、selector的内部多线程轮询的原理是什么
  - 11、netty中epoll是什么原理
  - 12、操作的系统ET模式和LT模式什么区别
- - 13、
+ - 13、netty的优点是什么
+ - 14、reactor线程模型的理解
+ - 15、netty如何解决tcp的拆包和黏包
+ - 16、netty如何实现高性能
+ - 17、netty的内存池话设计思路
+ - 18、netty的零copy实现
+ - 19、fastTheadLocal的实现原理
+ - 20、netty的高性能如何体现
+ - 21、netty的高可靠如何实现
+ - 22、netty的高可扩展如何实现
+ - 23、netty的核心组件
+ - 24、
