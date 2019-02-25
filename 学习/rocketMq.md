@@ -39,15 +39,21 @@
  - 文件读取时，如果没有命中pageCache，则会对于邻近的几个页面进行预读取
  - 文件写入时，会将文件先写入cache，之后异步刷新至物理磁盘
 #### 11、rocketMq怎么利用这些特性提高性能的
- - rocketMq在一开始就讲数据文件映射到os的虚拟内存中
+ - rocketMq在一开始就将数据文件映射到os的虚拟内存中
  - 在写入数据的时候，直接将数据写入到pageCache的缓存，之后通过异步刷盘的方式将消息持久化到磁盘
  - 在进行读取的时候（随机读），由于pageCache的整体逻辑是由旧到新，所以大部分都是在pageCache中进行读取
 #### 12、pageCache有什么缺点，rocketMq又是怎么解决的
  - pageCache技术在遇到os进行脏页回写，内存回收，内存swap等情况是时，会导致消息读写延迟
  - 但是rocketMq也才有用了，内存预分配，文件预热，mlock系统调用的方式尽量减少缺点带来的延迟
 #### 13、rocketMq的存储模型是什么
+ - commitLog 主要用来存储消息主题，默认1G大小
+ - consumeQueue 消息消费的逻辑队列，包含消息队列在commitLog中的位置和偏移量
+ - indexFile 生产访问数据的索引，通过消息的key值进行访问
+ - MappedFileQueue 通过他快速定位mappedFile的位置进行操作
+ - MappedFile 通过这个对象将数据写入pageCache，或同步刷到磁盘
 #### 14、rocketMq的刷盘机制
-
+ - 同步刷盘，但是会影响下入性能
+ - 异步刷盘，可能导致数据丢失
 #### 15、mmap中的缺页是什么意思
 #### 16、jdk nio中国的mapperByteBuffer
  - mapperByteBuffer继承自byteBuffer，在其内部维护了一个逻辑地址变量
@@ -58,4 +64,36 @@
  - mmap映射内存释放问题，由于映射内存不属于GC管理，所以映射内存无法自动卸载，而且fileChannel的unmap方法为私有的，所以rocketMq通过反射进行卸载内存
  - mappedByteBuffer内存映射，由于其占用的是虚拟内存，不受jvm限制，但是收到os虚拟内存限制，一般映射在1.5到2G
  - mappedByteBuffer会引起其他 内存占用率高和文件关闭不确定性的问题（为什么）
-#### 19、
+#### 19、内存预分配技术，预先分配MappedFile
+ -
+#### 20、mlock系统调用
+ - 通过mlock将进程中的数据锁定到物理内存，防止交换到swap空间
+#### 21、什么是swap空间
+#### 22、文件预热
+ - rocketMq会将尽可能多的数据映射到内存中，
+#### 23、什么是messageTag,在rocketMq中有什么作用
+#### 24、producer的作用
+ - 获得topic-broker的映射关系，通过namesrc获取地址，并且实时心跳更新数据30s，如果producer死掉，broker每10s会检测，发现后断开连接
+ - 生产者端的负载均衡，轮询方式，将消息发给每一个的broker
+#### 25、producer的发送方式，oneway是什么意思
+#### 26、consumer的作用
+ - 获取topic-broker的映射关系，从那么srv获取broker和topic信息，30s更新一次，如果consumer死掉，broker会在10s检测一次，如果两次为检测成功，会断开连接，并向其他consumer发送进行负载均衡
+ - 消费者端负载均衡，一个消费组内进行负载均衡
+#### 27、消费模式
+ - 集群消费
+ - 广播消费
+#### 28、消息重放
+ - 修改consumer的offer
+#### 29、顺序消息，如何实现
+ - 普通顺序消息
+ - 严格顺序消息
+#### 30、定时消息
+#### 31、消息重试，
+ - 消息在消费失败之后，会添加到重试队列中，再次消费
+ - 如果消息重试次数太多，则会将消息加入死信队列
+#### 32、事务消息
+ - 提交和回滚机制
+#### 33、rocketMq的高可用实现
+#### 34、rocketMq是否会弄丢数据
+#### 35、保证消息消费的幂等性
+#### 36、
