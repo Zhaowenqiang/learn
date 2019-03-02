@@ -10,5 +10,26 @@
    - 数据压缩
    - topic划分多个partition
  - 负载均衡
-   - 
-#### 4、
+   - product自己选择算法路由到partition
+   - topic有多个partition，每个partition有自己的replica，每个replica分布在不同的broker，多个partition需要选取出leader partition，leader负责读写，并由zookeeper负责fail over
+   - 相同topic的多个partition会分给不同的consumer
+ - 拉取系统
+   - kafka所有数据持久化，适合pull方式
+   - 简化设计
+   - 消费者自己控制消费速度有消费模式
+ - 可扩展性
+   - zookeeper管理broker，consumer，producer，动态的增加以及负载
+#### 4、kafka的基本架构
+#### 5、为什么topic需要进行分区
+#### 6、product的发送过程
+#### 7、broker的存储消息
+#### 8、consumer消费过程
+#### 9、kafka的发送模式
+ - 异步与同步
+ - 异步时可以指定时间，数量
+#### 10、消费者是否可以指定分区消费
+#### 11、kafka在读写模型和rocketMq额读写模型的区别
+#### 12、kafka的副本机制
+#### 13、kafaka是否会丢失数据和rocketMq的区别，原理是什么
+#### 14、zookeeper在kafka中的作用
+#### 15、kafka的消费有序性怎么解决
