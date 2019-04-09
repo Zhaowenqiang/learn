@@ -22,7 +22,14 @@
  - dubbo的一个application，registry，reference
  - 通过meta-inf获取到spring中相关schema和xsd的信息，以及他们的解析和命名空间类
  - 通过解析类和命名空间类加载配置文件，也就是dubbo配置文件的加载，其中包含xml和注解的方式
- - 
+ -
 
 #### 7、xsd的语法学习
  -
+#### 8、spring中dubbo的退出事件处理
+ - dubbo监听了spring的退出事件，在spring容器退出时对dubbo的进行退出
+ - DubboShutdownHook，这个方法的销毁函数，这个对象是静态单例处理的
+#### 9、为什么在这里特殊处理，ConfigurableApplicationContext这个有什么特殊的，什么作用
+ - ConfigurableApplicationContext为ApplicationContext的直接子类，处理它就代表处理所有的类
+#### 10、dubbo通过ServiceBean和ReferenceBean中将自己注册进去
+ - FactoryBean
